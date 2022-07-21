@@ -28,20 +28,39 @@ namespace Service.Services
         {
             throw new NotImplementedException();
         }
+               
+        public Group GetById(int id)
+        {
+            var group = _groupRepository.Get(m => m.Id == id);
+            if (group is null) return null;
+            return group;
+        }
 
         public List<Group> GetAll()
         {
-            throw new NotImplementedException();
-        }
-
-        public Group GetById(int id)
-        {
-            throw new NotImplementedException();
+            return _groupRepository.GetAll();
         }
 
         public Group Update(int id, Group group)
         {
             throw new NotImplementedException();
         }
+
+        public List<Group> GetAllByTeacherName(string name)
+        {
+           return  _groupRepository.GetAll(m=>m.Teacher.Trim().ToLower().StartsWith(name.Trim().ToLower()));
+        }
+
+        public List<Group> GetAllByRoom(string roomName)
+        {
+            return _groupRepository.GetAll(m => m.Room.Trim().ToLower().StartsWith(roomName.Trim().ToLower()));
+        }
+
+        public List<Group> SearchGroupByNames(string searchN)
+        {
+            return _groupRepository.GetAll(m => m.Name.Trim().ToLower().StartsWith(searchN.Trim().ToLower()));
+        }
+
+       
     }
 }
