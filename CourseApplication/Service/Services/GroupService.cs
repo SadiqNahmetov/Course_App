@@ -16,6 +16,7 @@ namespace Service.Services
         {
             _groupRepository = new GroupRepository();
         }
+
         public Group Create(Group group)
         {
             group.Id = _count;
@@ -26,7 +27,12 @@ namespace Service.Services
 
         public void Delete(int id)
         {
-            throw new NotImplementedException();
+            Group group = GetById(id);
+           if (group == null) Console.WriteLine("Group nof found"); 
+            _groupRepository.Delete(group);
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.WriteLine(group.Name +" -- "+ "Deleted group");
+
         }
                
         public Group GetById(int id)
@@ -43,17 +49,22 @@ namespace Service.Services
 
         public Group Update(int id, Group group)
         {
-            throw new NotImplementedException();
+            Group dbGroup = GetById(id);
+            if (dbGroup is null) return null;
+            group.Id = dbGroup.Id;
+           
+            _groupRepository.Update(group);
+            return dbGroup;
         }
 
         public List<Group> GetAllByTeacherName(string name)
         {
-           return  _groupRepository.GetAll(m=>m.Teacher.Trim().ToLower().StartsWith(name.Trim().ToLower()));
+           return  _groupRepository.GetAll(m => m.Teacher.Trim().ToLower() == name.Trim().ToLower());
         }
 
         public List<Group> GetAllByRoom(string roomName)
         {
-            return _groupRepository.GetAll(m => m.Room.Trim().ToLower().StartsWith(roomName.Trim().ToLower()));
+            return _groupRepository.GetAll(m => m.Room.Trim().ToLower() == roomName.Trim().ToLower());
         }
 
         public List<Group> SearchGroupByNames(string searchN)
