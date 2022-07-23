@@ -23,8 +23,9 @@ namespace Service.Helpers
       GetAllGroups = 5,
       SearchForGroupsByTeacherName = 6,
       GetAllGroupsByRoom = 7,
-      SearchMethodForGroupsByName = 8
-
+      SearchMethodForGroupsByName = 8,
+      CreateStudent  = 9,
+      DeleteStudent = 10
     }
 
 }

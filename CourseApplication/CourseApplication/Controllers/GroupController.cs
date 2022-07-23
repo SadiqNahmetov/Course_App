@@ -172,11 +172,11 @@ namespace CourseApplication.Controllers
         public void Update()
         {
             Helper.WriteConsole(ConsoleColor.Blue, "Add group id: ");
-           Groupid: string updateGroup = Console.ReadLine();
+           Groupid: string updateGroupId = Console.ReadLine();
 
             int groupId;
 
-            bool isGroupId = int.TryParse(updateGroup, out groupId);
+            bool isGroupId = int.TryParse(updateGroupId, out groupId);
 
             if (isGroupId)
             {
@@ -185,22 +185,22 @@ namespace CourseApplication.Controllers
 
                 Helper.WriteConsole(ConsoleColor.Blue, "Add group new teacher name: ");
                  NewTeacName : string groupNewTeacherName = Console.ReadLine();
-                for (int i = 0; i <= 9; i++)
-                {
-                    if (groupNewTeacherName.Contains(i.ToString()))
+                    for (int i = 0; i <= 9; i++)
                     {
+                      if (groupNewTeacherName.Contains(i.ToString()))
+                      {
                         Helper.WriteConsole(ConsoleColor.Red, "Teacher name is not correct: ");
                         goto NewTeacName;
-                    }
+                      }
 
-                }
+                  }
                 Helper.WriteConsole(ConsoleColor.Blue, "Add group new room name: ");
                 string groupNewRoomName = Console.ReadLine();
 
                 Group group = new Group()
                 {
                     Name = groupNewName,
-                    Teacher =groupNewTeacherName,
+                    Teacher = groupNewTeacherName,
                     Room = groupNewRoomName 
                 };
 
@@ -216,11 +216,7 @@ namespace CourseApplication.Controllers
                     Helper.WriteConsole(ConsoleColor.Green, $"Group id : {resultGroup.Id}, Group name : {resultGroup.Name}, Teacher name : {resultGroup.Teacher}, Room name : {resultGroup.Room}");
                 }
             }
-            else
-            {
-                Helper.WriteConsole(ConsoleColor.Red, "Please correct group id:");
-                goto Groupid;
-            }
+          
         }
     }
 }

@@ -11,9 +11,10 @@ namespace CourseApplication
     {
         static void Main(string[] args)
         {
-            GroupService groupService = new GroupService();
-
+           
             GroupController groupController = new GroupController();
+
+            StudentController studentController = new StudentController();
 
             Helper.WriteConsole(ConsoleColor.Blue, "Select one option: ");
 
@@ -70,6 +71,14 @@ namespace CourseApplication
 
                             groupController.SearchByName();
                              break;
+
+                           
+                            // Student
+
+                        case (int)Menues.CreateStudent:
+
+                           studentController.Create();
+                            break;
                         default:
                             Helper.WriteConsole(ConsoleColor.Red, "Select correct option number: ");
                             break;
@@ -86,7 +95,7 @@ namespace CourseApplication
         {
             Helper.WriteConsole(ConsoleColor.Yellow, "1 - Create Group, 2 - Get group by id , 3 - Update group, 4 - Delete Group," +
               " 5 - Get all groups, 6 - Search for groups by teacher name, 7 - Get all groups by room," +
-              " 8 - Search method for groups by name");
+              " 8 - Search method for groups by name , 9 - Create Student");
         }
     }
 }
